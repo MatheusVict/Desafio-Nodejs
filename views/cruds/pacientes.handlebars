@@ -1,0 +1,23 @@
+<h2>Pacientes: </h2>
+<hr>
+<a href="/crud/pacientes/add"><button class="btn btn-success">Adicionar paciente</button></a>
+
+{{#each pacientes}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4>Paciente: {{nome}}</h4>
+            <small>Endereço: {{endereco}}</small><br>
+            <small>Id do cartão: {{cartao}}</small><br>
+            <small>Data de registro: {{#FormData}}{{/FormData}}</small><br>
+            <small>Horario completo: {{date}}</small><br>
+           <a href="/crud/pacientes/edit/{{_id}}"><button class="btn btn-success mt-2">Editar Paciente</button></a>
+           <form action="/crud/pacientes/delet" method="post">
+            <input type="hidden" name="id" value="{{_id}}"> <!--vai enviar o id pra apagar-->
+            <button type="submit" class="btn btn-danger mt-3">Apagar paciente</button>
+           </form>
+           <a href="/crud/pacientes/{{_id}}"><button class="btn btn-info mt-3">Ver paciente</button></a>
+        </div>
+    </div>
+{{else}}
+    <h3 class="mt-4" align="center">Nenhum paciente registrado...</h3>
+{{/each}}

@@ -1,0 +1,297 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Pacientes desafio",
+        "description": "Tem como objetivo a manipulação dos dados do paciente",
+        "termsOfService": "http://localhost:3000/exemplo",
+        "contact":{
+            "email": "matheusvictorhenrique@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/",
+            "description": "Api de exibição"
+        }
+    ],
+    "paths": {
+        "/crud/pacientes/new": {
+            "post": {
+                "summary": "Cadastro de pacientes",
+                "description": "Essa rota será responsável por cadastrar um paciente",
+                "tags": ["Paciente"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Paciente"
+                            },
+                            "examples": {
+                                "paciente": {
+                                    "value": {
+                                        "nome": "Matheus victor",
+                                        "endereco": "Recife, PE",
+                                        "cartao": 123456789
+                                    }
+                                },
+                                "doutor": {
+                                    "value": {
+                                        "nome": "Marcio",
+                                        "endereco": "Olinda, PE",
+                                        "cartao": 987632185
+                                    }
+                                },
+                                "paciente2": {
+                                    "value": {
+                                        "nome": "João de melo",
+                                        "endereco": "Paulista",
+                                        "cartao": 836472089
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Paciente"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao registrar"
+                    },
+                    "404": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            }
+        },
+        "/crud/pacientes/{id}": {
+            "get": {
+                "description": "Exibe os pacientes",
+                "summary": "Exibição de pacientes",
+                "tags":["Paciente"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Dados dos pacientes",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Paciente"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crud/pacientes/edit/{id}": {
+            "get": {
+                "description": "Edita de acordo com o ID",
+                "summary": "Edição de pacientes pelo id",
+                "tags":["Paciente"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Edição dos dados pelo id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Paciente"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crud/pacientes/edit": {
+            "post": {
+                "description": "Editar os pacientes",
+                "summary": "Edição de pacientes",
+                "tags":["Paciente"],
+                "parameters":[
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Edição dos dados pelo id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Paciente"
+                            },
+                            "examples": {
+                                "paciente": {
+                                    "value": {
+                                        "nome": "Manuel",
+                                        "endereco": "Pau amarelo",
+                                        "cartao": 123456789
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Paciente"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao registrar"
+                    },
+                    "404": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            }                          
+        },
+        "/crud/pacientes/delet": {
+            "post": {
+                "description": "Deleta de acordo com o ID",
+                "summary": "Exclusão de pacientes pelo id",
+                "tags":["Paciente"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Exclusão dos dados pelo id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Paciente"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/exemplo": {
+            "post": {
+                "summary": "Exemplo do desafio",
+                "description": "exemplo",
+                "tags": ["Paciente"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Paciente"
+                            },
+                            "examples": {
+                                "paciente": {
+                                    "value": {
+                                        "nome": "Matheus victor",
+                                        "endereco": "Recife, PE",
+                                        "cartao": 123456789
+                                    }
+                                },
+                                "doutor": {
+                                    "value": {
+                                        "nome": "Marcio",
+                                        "endereco": "Olinda, PE",
+                                        "cartao": 987632185
+                                    }
+                                },
+                                "paciente2": {
+                                    "value": {
+                                        "nome": "João de melo",
+                                        "endereco": "Paulista",
+                                        "cartao": 836472089
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Paciente"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao registrar"
+                    },
+                    "404": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            }
+        } 
+    },
+    "components": {
+        "schemas": {
+            "Paciente": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "endereco": {
+                        "type": "string"
+                    },
+                    "cartao": {
+                        "type": "number"
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
